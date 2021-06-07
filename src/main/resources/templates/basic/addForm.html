@@ -40,7 +40,9 @@ max-width: 560px;
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
-                        onclick="location.href='items.html'" type="button">취소</button>
+                        onclick="location.href='items.html'"
+                        th:onclick="|location.href='@{/basic/items}'|"
+                        type="button">취소</button>
             </div>
         </div>
     </form>
