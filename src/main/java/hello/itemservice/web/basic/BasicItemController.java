@@ -18,30 +18,29 @@ public class BasicItemController {
     private final ItemRepository itemRepository;
 
     @GetMapping
-    public String items(Model model){
+    public String items(Model model) {
         List<Item> items = itemRepository.findAll();
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "basic/items";
     }
 
     @GetMapping("/{itemId}")
-    public String item(@PathVariable long itemId, Model model){
+    public String item(@PathVariable long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
-        model.addAttribute("item",item);
+        model.addAttribute("item", item);
         return "basic/item";
     }
 
     @GetMapping("/add")
-    public String addForm(){
+    public String addForm() {
         return "basic/addForm";
     }
 
-//    @PostMapping("/add")
+    //    @PostMapping("/add")
     public String addItemV1(@RequestParam String itemName,
-                       @RequestParam int price,
-                       @RequestParam Integer quantity,
-                       Model model)
-    {
+                            @RequestParam int price,
+                            @RequestParam Integer quantity,
+                            Model model) {
         Item item = new Item();
         item.setItemName(itemName);
         item.setPrice(price);
@@ -49,22 +48,21 @@ public class BasicItemController {
 
         itemRepository.save(item);
 
-        model.addAttribute("item",item);
+        model.addAttribute("item", item);
 
         return "basic/addForm";
     }
 
-   // @PostMapping("/add")
-    public String addItemV2(@ModelAttribute("item") Item item)
-    {
+    // @PostMapping("/add")
+    public String addItemV2(@ModelAttribute("item") Item item) {
         itemRepository.save(item);
 //        model.addAttribute("item",item);  //자동추가,생략가능
 
         return "basic/addForm";
     }
+
     //@PostMapping("/add")
-    public String addItemV3(@ModelAttribute Item item)
-    {
+    public String addItemV3(@ModelAttribute Item item) {
         itemRepository.save(item);
 //        model.addAttribute("item",item);  //자동추가,생략가능
 
@@ -72,13 +70,27 @@ public class BasicItemController {
     }
 
     @PostMapping("/add")
-    public String addItemV4(Item item)
-    {
+    public String addItemV4(Item item) {
         itemRepository.save(item);
 //        model.addAttribute("item",item);  //자동추가,생략가능
 
         return "basic/addForm";
     }
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item",item);
+        return "basic/editForm";
+    }
+
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId,item);
+        return "redirect:/basic/item/{itemId}";
+    }
+
+
     /*
      * 테스트용 데이터 추가
      */
