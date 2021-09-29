@@ -8,5 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String home(){ return "redirect:/items";}
+    public String home(){
+        log.info("홈화면 호출");
+        return "redirect:/items";
+    }
 }
