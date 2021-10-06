@@ -11,6 +11,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 import java.util.List;
@@ -27,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(1)
                 .addPathPatterns("/?*")
-                .excludePathPatterns("/css/**","/*.ico","/error");
+                .excludePathPatterns("/css/**","/*.ico","/error","/error-page/**");
 
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
@@ -41,7 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setFilter(new LogFilter());
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*"); //모든 url 적용
-
+        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
         return filterRegistrationBean;
     }
     //@Bean
