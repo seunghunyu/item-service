@@ -1,6 +1,7 @@
 package hello.itemservice;
 
 import hello.itemservice.exception.resolver.MyHandlerExceptionResolver;
+import hello.itemservice.exception.resolver.UserHandlerExceptionResolver;
 import hello.itemservice.web.argumentresolver.LoginMemberArgumentResolver;
 import hello.itemservice.web.filter.LogFilter;
 import hello.itemservice.web.interceptor.LoginCheckInterceptor;
@@ -41,6 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 
     //@Bean
