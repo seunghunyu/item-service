@@ -1,5 +1,6 @@
 package hello.itemservice;
 
+import hello.itemservice.exception.resolver.MyHandlerExceptionResolver;
 import hello.itemservice.web.argumentresolver.LoginMemberArgumentResolver;
 import hello.itemservice.web.filter.LogFilter;
 import hello.itemservice.web.interceptor.LoginCheckInterceptor;
@@ -8,6 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers){
         resolvers.add(new LoginMemberArgumentResolver());
@@ -34,6 +37,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/","/members/add","/login","/logout","/css/**","/*.ico","/error");
+    }
+    @Override
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+        resolvers.add(new MyHandlerExceptionResolver());
     }
 
     //@Bean
