@@ -1,5 +1,6 @@
 package hello.itemservice.exception.api;
 
+import hello.itemservice.exception.exception.BadRequestException;
 import hello.itemservice.exception.exception.UserException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,12 @@ public class ApiExceptionController {
 
         return new MemberDto(id, "hello "+ id);
     }
+
+    @GetMapping("/adi/reponse-status-ex1")
+    public String responseStatusEx1(){
+        throw new BadRequestException();
+    }
+
     @Data
     @AllArgsConstructor
     static class MemberDto{
