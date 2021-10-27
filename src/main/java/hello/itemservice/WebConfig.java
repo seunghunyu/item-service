@@ -2,6 +2,7 @@ package hello.itemservice;
 
 import hello.itemservice.exception.resolver.MyHandlerExceptionResolver;
 import hello.itemservice.exception.resolver.UserHandlerExceptionResolver;
+import hello.itemservice.formatter.MyNumberFormatter;
 import hello.itemservice.typeconverter.converter.IntegerToStringConverter;
 import hello.itemservice.typeconverter.converter.IpToStringPortConverter;
 import hello.itemservice.typeconverter.converter.StringToIntegerConverter;
@@ -34,10 +35,14 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToIntegerConverter());
-        registry.addConverter(new IntegerToStringConverter());
+//        registry.addConverter(new StringToIntegerConverter());
+//        registry.addConverter(new IntegerToStringConverter());
+
         registry.addConverter(new StringToIpPortConverter());
         registry.addConverter(new IpToStringPortConverter());
+
+        //추가
+        registry.addFormatter(new MyNumberFormatter());
     }
 
     @Override
