@@ -30,6 +30,6 @@ public class ServletUploadControllerV1{
 
         Collection<Part> parts = request.getParts();
 
-        return "ok";
+        return "upload-form";
     }
 }

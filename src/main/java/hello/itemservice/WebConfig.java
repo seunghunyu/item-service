@@ -45,6 +45,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addFormatter(new MyNumberFormatter());
     }
 
+    /*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
@@ -81,6 +82,5 @@ public class WebConfig implements WebMvcConfigurer {
 
         return filterRegistrationBean;
     }
-
-
+    */
 }
