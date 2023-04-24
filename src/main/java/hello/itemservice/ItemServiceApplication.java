@@ -1,13 +1,26 @@
 package hello.itemservice;
 
+import hello.itemservice.config.*;
+import hello.itemservice.repository.ItemRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 
-@SpringBootApplication
+@Import(MemoryConfig.class)//[2023.04.25]
+@SpringBootApplication(scanBasePackages = "hello.itemservice.web")
 public class ItemServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ItemServiceApplication.class, args);
 	}
 
+	//[2023.04.25]
+	@Bean
+	@Profile("local")
+	public TestDataInit testDataInit(ItemRepository itemRepository) {
+		TestDataInit testDataInit = new TestDataInit(itemRepository);
+		return testDataInit;
+	}
 }
