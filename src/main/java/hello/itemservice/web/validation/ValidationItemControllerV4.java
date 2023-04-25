@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Slf4j
-@Controller
+//@Controller
 @RequestMapping("/validation/v4/items")
 @RequiredArgsConstructor
 public class ValidationItemControllerV4 {

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RequiredArgsConstructor
-@Controller
+//@Controller
 public class LoginController {
     private final LoginService loginService;
     private final SessionManager sessionManager;

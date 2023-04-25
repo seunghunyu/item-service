@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-@Controller
+//@Controller
 @RequestMapping("/basic/items")
 @RequiredArgsConstructor   // final이 붙은 필드를 가지고 @Autowired annotation이 붙은 생성자를 만들어주는 annotation
 public class BasicItemController {
