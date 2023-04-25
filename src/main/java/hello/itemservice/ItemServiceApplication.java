@@ -1,7 +1,8 @@
 package hello.itemservice;
 
 import hello.itemservice.config.*;
-import hello.itemservice.repository.ItemRepository;
+//import hello.itemservice.repository.ItemRepository;
+import hello.itemservice.domain.item.ItemRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

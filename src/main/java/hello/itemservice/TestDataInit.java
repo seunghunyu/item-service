@@ -19,6 +19,15 @@ public class TestDataInit {
     private final ItemRepository itemRepository;
 //    private final MemberRepository memberRepository;
 
+    /**
+     * 확인용 초기 데이터 추가
+     */
+    @EventListener(ApplicationReadyEvent.class)
+    public void initData() {
+        log.info("test data init");
+        itemRepository.save(new Item("itemA", 10000, 10));
+        itemRepository.save(new Item("itemB", 20000, 20));
+    }
 
 //    /**
 //     * 테스트용 데이터 추가
@@ -34,14 +43,4 @@ public class TestDataInit {
 //        member.setName("테스터");
 //        memberRepository.save(member);
 //    }
-
-    /**
-     * 확인용 초기 데이터 추가
-     */
-    @EventListener(ApplicationReadyEvent.class)
-    public void initData() {
-        log.info("test data init");
-        itemRepository.save(new Item("itemA", 10000, 10));
-        itemRepository.save(new Item("itemB", 20000, 20));
-    }
 }
