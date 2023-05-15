@@ -48,7 +48,6 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
                      "values(:itemName, :price, :quantity)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
-
         template.update(sql, param, keyHolder);
 
         long key = keyHolder.getKey().longValue();
