@@ -2,20 +2,40 @@ package hello.itemservice.domain.item;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-
+@Transactional
+@SpringBootTest
 class itemRepositoryTest {
+    @Autowired
     ItemRepository itemRepository = new ItemRepository();
+//
+//    @Autowired
+//    PlatformTransactionManager transactionManager;
+//    TransactionStatus status;
+//    @BeforeEach
+//    void beforeEach(){
+//        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+//    }
 
     @AfterEach
     void afterEach() {
         itemRepository.clearStore();
+       // transactionManager.rollback(status);
     }
 
+//    @Commit -> Transactional 이 붙어있어도 해당 테스트는 commit 되어서 DB에 적재
     @Test
     void save(){
         //given
