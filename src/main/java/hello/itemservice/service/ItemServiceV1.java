@@ -1,9 +1,9 @@
 package hello.itemservice.service;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import hello.itemservice.domain.item.Item;
+import hello.itemservice.domain.repository.ItemRepository;
+import hello.itemservice.domain.repository.ItemSearchCond;
+import hello.itemservice.domain.repository.ItemUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ public class ItemServiceV1 implements ItemService {
 
     @Override
     public Item save(Item item) {
+        itemRepository.save(item);
         return itemRepository.save(item);
     }
 

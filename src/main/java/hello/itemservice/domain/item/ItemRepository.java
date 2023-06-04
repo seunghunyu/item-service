@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Repository
+@Repository
 public class ItemRepository {
     private static final Map<Long, Item> store = new HashMap<>(); //static
     private static long sequence = 0L; //static
 
     public Item save(Item item){
         item.setId(++sequence);
-        store.put(item.getId(),item);
+        store.put(item.getId(), item);
         return item;
     }
 

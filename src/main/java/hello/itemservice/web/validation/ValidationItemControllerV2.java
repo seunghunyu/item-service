@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -18,9 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 //@Controller
@@ -103,7 +100,7 @@ public class ValidationItemControllerV2 {
             bindingResult.addError(new FieldError("item","price", item.getPrice(), false ,null, null,"가격은 1,000 ~ 1,000,000 까지 허용 됩니다."));
         }
         if(item.getQuantity() == null || item.getQuantity() > 9999){
-            bindingResult.addError(new FieldError("item","quantity",item.getQuantity(),false,null,null,"수량은 최대 9,999 까지 허용 합니다."));
+            bindingResult.addError(new FieldError("item","quantity", item.getQuantity(),false,null,null,"수량은 최대 9,999 까지 허용 합니다."));
         }
 
         //특정 필드가 아닌 복합룰 검증
@@ -138,7 +135,7 @@ public class ValidationItemControllerV2 {
             bindingResult.addError(new FieldError("item","price", item.getPrice(), false ,new String[]{"range.item.price"}, new Object[]{1000,1000000},null));
         }
         if(item.getQuantity() == null || item.getQuantity() > 9999){
-            bindingResult.addError(new FieldError("item","quantity",item.getQuantity(),false,new String[]{"max.item.quantity"},new Object[]{9999},null));
+            bindingResult.addError(new FieldError("item","quantity", item.getQuantity(),false,new String[]{"max.item.quantity"},new Object[]{9999},null));
         }
 
         //특정 필드가 아닌 복합룰 검증

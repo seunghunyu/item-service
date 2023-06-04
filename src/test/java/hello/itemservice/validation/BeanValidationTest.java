@@ -2,7 +2,6 @@ package hello.itemservice.validation;
 
 import hello.itemservice.domain.item.Item;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

@@ -1,9 +1,9 @@
-package hello.itemservice.repository.memory;
+package hello.itemservice.domain.repository.memory;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import hello.itemservice.domain.item.Item;
+import hello.itemservice.domain.repository.ItemRepository;
+import hello.itemservice.domain.repository.ItemSearchCond;
+import hello.itemservice.domain.repository.ItemUpdateDto;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 
@@ -57,6 +57,8 @@ public class MemoryItemRepository implements ItemRepository {
                 })
                 .collect(Collectors.toList());
     }
+
+
 
     public void clearStore() {
         store.clear();

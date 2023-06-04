@@ -1,7 +1,7 @@
 package hello.itemservice;
 
 import hello.itemservice.config.*;
-import hello.itemservice.repository.ItemRepository;
+import hello.itemservice.domain.repository.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,11 +25,11 @@ public class ItemServiceApplication {
 	}
 
 	//[2023.04.25]
-	@Bean
-	@Profile("local")
-	public TestDataInit testDataInit(ItemRepository itemRepository) {
-		return new TestDataInit(itemRepository);
-	}
+//	@Bean
+//	@Profile("local")
+//	public TestDataInit testDataInit(ItemRepository itemRepository) {
+//		return new TestDataInit(itemRepository);
+//	}
 
 //	@Bean
 //	@Profile("test")

@@ -1,9 +1,9 @@
-package hello.itemservice.repository.jdbctemplate;
+package hello.itemservice.domain.repository.jdbctemplate;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import hello.itemservice.domain.item.Item;
+import hello.itemservice.domain.repository.ItemRepository;
+import hello.itemservice.domain.repository.ItemSearchCond;
+import hello.itemservice.domain.repository.ItemUpdateDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 /*
  * JdbcTemplate
  */
@@ -47,6 +48,7 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
         return item;
     }
+
 
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {

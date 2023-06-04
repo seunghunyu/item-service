@@ -3,7 +3,9 @@ package hello.itemservice.domain.item;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.Data;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.ScriptAssert;
 
