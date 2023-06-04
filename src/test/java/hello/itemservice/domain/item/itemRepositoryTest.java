@@ -40,6 +40,7 @@ class itemRepositoryTest {
     void save(){
         //given
         Item item = new Item("itemA",10000,10);
+
         //when
         Item savedItem = itemRepository.save(item);
         //then
