@@ -2,6 +2,7 @@ package hello.springtx.propagation;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
+import java.rmi.UnexpectedException;
 
 @Slf4j
 @SpringBootTest
@@ -104,9 +106,28 @@ public class BasicTxTest {
         TransactionStatus inner = txManager.getTransaction(new DefaultTransactionAttribute());
         log.info("inner.isNewTransaction = {}", inner.isNewTransaction());
         log.info("내부 트랜잭션 커밋");
+        txManager.commit(inner);
+
 
         log.info("외부 트랜잭션 롤백");
         txManager.rollback(outer);
+    }
+    @Test
+    void inner_rollback(){
+        log.info("외부 트랜잭션 시작");
+        TransactionStatus outer = txManager.getTransaction(new DefaultTransactionAttribute());
+        log.info("outer.isNewTransaction = {}", outer.isNewTransaction());
+
+        log.info("내부 트랜잭션 시작");
+        TransactionStatus inner = txManager.getTransaction(new DefaultTransactionAttribute());
+        log.info("내부 트랜잭션 롤백");
+        txManager.rollback(inner); //rollback-only mark
+
+        log.info("외부 트랜잭션 커밋");
+        txManager.commit(outer);
+        Assertions.assertThatThrownBy(()-> txManager.commit(outer))
+                    .isInstanceOf(UnexpectedException.class);
+
     }
 
 
